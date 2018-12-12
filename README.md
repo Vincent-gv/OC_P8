@@ -1,6 +1,12 @@
-ToDoList
-========
+# OpenClassroom - PHP/Symphony Developer
+# Project 8 _ Améliorez une application existante de ToDo & Co
 
-Base du projet #8 : Améliorez un projet existant
+## Link of the Path
+ ```
+ https://openclassrooms.com/paths/59-developpeur-dapplication-php-symfony
+ ```
 
-https://openclassrooms.com/projects/ameliorer-un-projet-existant-1
+## Base project
+```
+https://github.com/saro0h/projet8-TodoList
+```
