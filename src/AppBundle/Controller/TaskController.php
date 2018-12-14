@@ -31,6 +31,10 @@ class TaskController extends Controller
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
 
+            // Get Current User for Task attribution on Create
+            $user = $this->getUser();
+            $task->setUser($user);
+
             $em->persist($task);
             $em->flush();
 
