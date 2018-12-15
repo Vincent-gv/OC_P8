@@ -91,12 +91,14 @@ class User implements UserInterface
 
     public function getRoles()
     {
-        return array($this->roles);
+        return $this->roles;
     }
 
     public function setRoles($roles)
     {
         $this->roles = $roles;
+
+        return $this;
     }
 
     public function eraseCredentials()
