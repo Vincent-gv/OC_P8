@@ -4,11 +4,18 @@
 {% block header_img %}{% endblock %}
 
 {% block body %}
-    <div class="row">
-        {{ form_start(form, {'action' : path('user_create')}) }}
-            {{ form_widget(form) }}
+    {% if is_granted('ROLE_ADMIN') %}
+        <div class="row">
+            {{ form_start(form, {'action' : path('user_create')}) }}
+                {{ form_widget(form) }}
 
-            <button type="submit" class="btn btn-success pull-right">Ajouter</button>
-        {{ form_end(form) }}
-    </div>
+                <button type="submit" class="btn btn-success pull-right">Ajouter</button>
+            {{ form_end(form) }}
+        </div>
+    {% else %}
+        <div class="row">
+            <p>Vous n'avez pas les permissions pour créer un nouvel utilisateur.</p>
+            <a href="{{ path('homepage') }}" class="btn btn-primary">Retour à l'accueil</a>
+        </div>
+    {% endif %}
 {% endblock %}
