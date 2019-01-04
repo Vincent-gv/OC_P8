@@ -47,10 +47,6 @@ class UserControllerTest extends WebTestCase
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         $this->assertContains('usertest', $client->getResponse()->getContent());
-
-        //$crawler = $client->followRedirect();
-        //$this->assertEquals(200, $client->getResponse()->getStatusCode());
-        //$this->assertContains('utilisateur a bien été ajouté.', $client->getResponse()->getContent());
     }
 
     public function testEdit()
