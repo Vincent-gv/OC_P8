@@ -8,7 +8,11 @@ use AppBundle\Entity\Task;
 use AppBundle\Entity\User;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use PHPUnit\Framework\TestCase;
 
+/**
+ * @codeCoverageIgnore
+ */
 class LoadFixtures extends AbstractFixture implements ContainerAwareInterface
 {
     private $container;
