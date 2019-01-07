@@ -26,7 +26,6 @@ class UserController extends Controller
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
-
         $form->handleRequest($request);
 
         // @codeCoverageIgnoreStart
@@ -54,7 +53,6 @@ class UserController extends Controller
     public function editAction(User $user, Request $request)
     {
         $form = $this->createForm(UserType::class, $user);
-
         $form->handleRequest($request);
 
         // @codeCoverageIgnoreStart
@@ -70,7 +68,6 @@ class UserController extends Controller
             return $this->redirectToRoute('user_list');
         }
         // @codeCoverageIgnoreEnd
-
         return $this->render('user/edit.html.twig', ['form' => $form->createView(), 'user' => $user]);
     }
 }
