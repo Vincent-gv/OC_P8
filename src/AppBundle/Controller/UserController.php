@@ -7,6 +7,7 @@ use AppBundle\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use PHPUnit\Framework\TestCase;
 
 class UserController extends Controller
 {
@@ -25,9 +26,10 @@ class UserController extends Controller
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
-
         $form->handleRequest($request);
 
+        // @codeCoverageIgnoreStart
+        // Test in Form
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $password = $this->get('security.password_encoder')->encodePassword($user, $user->getPassword());
@@ -40,6 +42,7 @@ class UserController extends Controller
 
             return $this->redirectToRoute('user_list');
         }
+        // @codeCoverageIgnoreEnd
 
         return $this->render('user/create.html.twig', ['form' => $form->createView()]);
     }
@@ -50,9 +53,10 @@ class UserController extends Controller
     public function editAction(User $user, Request $request)
     {
         $form = $this->createForm(UserType::class, $user);
-
         $form->handleRequest($request);
 
+        // @codeCoverageIgnoreStart
+        // Test in Form
         if ($form->isValid()) {
             $password = $this->get('security.password_encoder')->encodePassword($user, $user->getPassword());
             $user->setPassword($password);
@@ -63,7 +67,7 @@ class UserController extends Controller
 
             return $this->redirectToRoute('user_list');
         }
-
+        // @codeCoverageIgnoreEnd
         return $this->render('user/edit.html.twig', ['form' => $form->createView(), 'user' => $user]);
     }
 }

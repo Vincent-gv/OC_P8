@@ -25,11 +25,14 @@ class TaskController extends Controller
     {
         $task = new Task();
         $form = $this->createForm(TaskType::class, $task);
-
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+
+            // Get Current User for Task attribution on Create
+            $user = $this->getUser();
+            $task->setUser($user);
 
             $em->persist($task);
             $em->flush();
@@ -48,7 +51,6 @@ class TaskController extends Controller
     public function editAction(Task $task, Request $request)
     {
         $form = $this->createForm(TaskType::class, $task);
-
         $form->handleRequest($request);
 
         if ($form->isValid()) {
@@ -83,12 +85,16 @@ class TaskController extends Controller
      */
     public function deleteTaskAction(Task $task)
     {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($task);
-        $em->flush();
+        if ($task->getUser() === $this->getUser() ||($task->getUser() === null && $this->get('security.authorization_checker')->isGranted('ROLE_ADMIN'))) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($task);
+            $em->flush();
 
-        $this->addFlash('success', 'La tâche a bien été supprimée.');
+            $this->addFlash('success', 'La tâche a bien été supprimée.');
+            return $this->redirectToRoute('task_list');
+        }
 
+        $this->addFlash('error', 'Vous ne pouvez pas supprimer cette tâche.');
         return $this->redirectToRoute('task_list');
     }
 }
