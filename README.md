@@ -96,7 +96,8 @@ OK (19 tests, 40 assertions)
 
   Docs
   ```
-  Diagrams\aListOfDiagrams.md
+  performance : docs\blackfire-p8.pdf
+  code-coverage : web\test-coverage\index.html
   ```
 
 ## Built with
