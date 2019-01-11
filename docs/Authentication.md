@@ -11,18 +11,21 @@ We use bcrypt to encode user passwords. You can customise it to be more complex 
 See https://symfony.com/doc/current/reference/configuration/security.html for more informations
 ```
 
-## providers : This is the application user serving method. We define user storage in database through doctrine. "class" is the User model name used by
+## providers :
+This is the application user serving method. We define user storage in database through doctrine. "class" is the User model name used by
 ```
 our application, "property" is the User authentification attribute.
 See https://symfony.com/doc/3.4/security/entity_provider.html for more informations.
 ```
 
-## firewalls main : Permit anonymous user to access connexion form and log in.
+## firewalls main :
+Permit anonymous user to access connexion form and log in.
 ```
 See https://symfony.com/doc/3.4/reference/configuration/security.html for configuration details.
 ```
 
-## access_control : Define application route access rules based on user roles.
+## access_control :
+Define application route access rules based on user roles.
 ```
 See https://symfony.com/doc/3.4/security/access_control.html for more informations.
 ```
